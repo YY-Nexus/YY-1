@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import TopNav from "@/components/navigation/top-nav"
-import AppBackgroundLayout from "@/components/app-background-layout"
 import {
   AdvancedLineChart,
   HeatMapChart,
@@ -348,275 +347,265 @@ export default function AdvancedDashboardPage() {
   ]
 
   return (
-    <AppBackgroundLayout>
-      <div className="flex flex-col min-h-screen">
-        <TopNav />
+    <div className="flex flex-col min-h-screen">
+      <TopNav />
 
-        <main className="flex-1 p-6 overflow-auto">
-          <div className="max-w-7xl mx-auto space-y-6">
-            <div className="flex items-center justify-between">
-              <div>
-                <h1 className="text-2xl font-bold text-gray-800">高级功能演示</h1>
-                <p className="text-gray-500">展示数据可视化、个性化设置和业务流程优化功能</p>
-              </div>
-              <div className="flex gap-2">
-                <Dialog open={showDashboardCustomizer} onOpenChange={setShowDashboardCustomizer}>
-                  <DialogTrigger asChild>
-                    <Button variant="outline">
-                      <Settings className="mr-2 h-4 w-4" />
-                      自定义仪表盘
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="max-w-4xl">
-                    <DashboardCustomizer
-                      onSave={() => setShowDashboardCustomizer(false)}
-                      onCancel={() => setShowDashboardCustomizer(false)}
-                    />
-                  </DialogContent>
-                </Dialog>
-
-                <Dialog open={showSavedFilters} onOpenChange={setShowSavedFilters}>
-                  <DialogTrigger asChild>
-                    <Button variant="outline">
-                      <Filter className="mr-2 h-4 w-4" />
-                      已保存筛选
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="max-w-4xl">
-                    <SavedFiltersManager
-                      onApply={() => setShowSavedFilters(false)}
-                      onClose={() => setShowSavedFilters(false)}
-                    />
-                  </DialogContent>
-                </Dialog>
-
-                <Dialog open={showReportExporter} onOpenChange={setShowReportExporter}>
-                  <DialogTrigger asChild>
-                    <Button variant="outline">
-                      <Download className="mr-2 h-4 w-4" />
-                      导出报表
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="max-w-4xl">
-                    <ReportExporter
-                      onExport={() => setShowReportExporter(false)}
-                      onClose={() => setShowReportExporter(false)}
-                    />
-                  </DialogContent>
-                </Dialog>
-
-                <Dialog open={showGuidedWorkflow} onOpenChange={setShowGuidedWorkflow}>
-                  <DialogTrigger asChild>
-                    <Button>
-                      <Workflow className="mr-2 h-4 w-4" />
-                      创建订单
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="max-w-4xl">
-                    <GuidedWorkflow
-                      title="创建新订单"
-                      description="按照步骤完成订单创建"
-                      steps={workflowSteps}
-                      onComplete={() => setShowGuidedWorkflow(false)}
-                      onCancel={() => setShowGuidedWorkflow(false)}
-                    />
-                  </DialogContent>
-                </Dialog>
-              </div>
+      <main className="flex-1 p-6 overflow-auto">
+        <div className="max-w-7xl mx-auto space-y-6">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-800">高级功能演示</h1>
+              <p className="text-gray-500">展示数据可视化、个性化设置和业务流程优化功能</p>
             </div>
+            <div className="flex gap-2">
+              <Dialog open={showDashboardCustomizer} onOpenChange={setShowDashboardCustomizer}>
+                <DialogTrigger asChild>
+                  <Button variant="outline">
+                    <Settings className="mr-2 h-4 w-4" />
+                    自定义仪表盘
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-4xl">
+                  <DashboardCustomizer
+                    onSave={() => setShowDashboardCustomizer(false)}
+                    onCancel={() => setShowDashboardCustomizer(false)}
+                  />
+                </DialogContent>
+              </Dialog>
 
-            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="visualization">
-                  <div className="flex items-center">
-                    <BarChart3 className="mr-2 h-4 w-4" />
-                    <span>数据可视化</span>
-                  </div>
-                </TabsTrigger>
-                <TabsTrigger value="personalization">
-                  <div className="flex items-center">
-                    <Sliders className="mr-2 h-4 w-4" />
-                    <span>个性化设置</span>
-                  </div>
-                </TabsTrigger>
-                <TabsTrigger value="workflow">
-                  <div className="flex items-center">
+              <Dialog open={showSavedFilters} onOpenChange={setShowSavedFilters}>
+                <DialogTrigger asChild>
+                  <Button variant="outline">
+                    <Filter className="mr-2 h-4 w-4" />
+                    已保存筛选
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-4xl">
+                  <SavedFiltersManager
+                    onApply={() => setShowSavedFilters(false)}
+                    onClose={() => setShowSavedFilters(false)}
+                  />
+                </DialogContent>
+              </Dialog>
+
+              <Dialog open={showReportExporter} onOpenChange={setShowReportExporter}>
+                <DialogTrigger asChild>
+                  <Button variant="outline">
+                    <Download className="mr-2 h-4 w-4" />
+                    导出报表
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-4xl">
+                  <ReportExporter
+                    onExport={() => setShowReportExporter(false)}
+                    onClose={() => setShowReportExporter(false)}
+                  />
+                </DialogContent>
+              </Dialog>
+
+              <Dialog open={showGuidedWorkflow} onOpenChange={setShowGuidedWorkflow}>
+                <DialogTrigger asChild>
+                  <Button>
                     <Workflow className="mr-2 h-4 w-4" />
-                    <span>业务流程优化</span>
-                  </div>
-                </TabsTrigger>
-              </TabsList>
-
-              <TabsContent value="visualization" className="mt-6 space-y-6">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  <AdvancedLineChart
-                    data={multiLineData}
-                    title="多维度销售趋势"
-                    description="销售额、订单数和客户数趋势对比"
-                    lines={[
-                      { dataKey: "sales", stroke: "#3b82f6", name: "销售额" },
-                      { dataKey: "orders", stroke: "#10b981", name: "订单数" },
-                      { dataKey: "customers", stroke: "#f59e0b", name: "客户数" },
-                    ]}
-                    xAxisDataKey="name"
+                    创建订单
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="max-w-4xl">
+                  <GuidedWorkflow
+                    title="创建新订单"
+                    description="按照步骤完成订单创建"
+                    steps={workflowSteps}
+                    onComplete={() => setShowGuidedWorkflow(false)}
+                    onCancel={() => setShowGuidedWorkflow(false)}
                   />
-
-                  <StackedAreaChart
-                    data={stackedAreaData}
-                    title="商品类别销售趋势"
-                    description="各类别销售额堆叠展示"
-                    areas={[
-                      { dataKey: "饮品", stroke: "#3b82f6", fill: "#3b82f6", name: "饮品" },
-                      { dataKey: "食品", stroke: "#10b981", fill: "#10b981", name: "食品" },
-                      { dataKey: "服务", stroke: "#f59e0b", fill: "#f59e0b", name: "服务" },
-                    ]}
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  <HeatMapChart data={heatMapData} title="订单热力图" description="一周内各时段订单数量分布" />
-
-                  <ScatterPlotChart data={scatterData} title="客户消费分析" description="消费金额与频次关系分析" />
-                </div>
-
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  <AdvancedPieChart data={pieData} title="销售额分布" description="各类别销售额占比" />
-
-                  <DrillDownChart
-                    data={drillDownData}
-                    title="销售额多维度分析"
-                    description="点击柱形可查看更详细数据"
-                  />
-                </div>
-              </TabsContent>
-
-              <TabsContent value="personalization" className="mt-6 space-y-6">
-                <div className="grid grid-cols-1 gap-6">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>个性化设置功能</CardTitle>
-                      <CardDescription>自定义您的仪表盘、保存筛选条件和导出个性化报表</CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-6">
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <Card>
-                          <CardHeader>
-                            <CardTitle className="text-base">自定义仪表盘</CardTitle>
-                            <CardDescription>根据您的需求自定义仪表盘布局和内容</CardDescription>
-                          </CardHeader>
-                          <CardContent>
-                            <div className="flex flex-col items-center text-center">
-                              <Settings className="h-16 w-16 text-muted-foreground mb-4" />
-                              <p className="text-sm text-muted-foreground mb-4">
-                                自定义您的仪表盘布局、小部件和显示选项
-                              </p>
-                              <Button onClick={() => setShowDashboardCustomizer(true)}>自定义仪表盘</Button>
-                            </div>
-                          </CardContent>
-                        </Card>
-
-                        <Card>
-                          <CardHeader>
-                            <CardTitle className="text-base">保存筛选条件</CardTitle>
-                            <CardDescription>保存常用筛选条件以便快速应用</CardDescription>
-                          </CardHeader>
-                          <CardContent>
-                            <div className="flex flex-col items-center text-center">
-                              <Filter className="h-16 w-16 text-muted-foreground mb-4" />
-                              <p className="text-sm text-muted-foreground mb-4">保存和管理您的筛选条件，提高工作效率</p>
-                              <Button onClick={() => setShowSavedFilters(true)}>管理筛选条件</Button>
-                            </div>
-                          </CardContent>
-                        </Card>
-
-                        <Card>
-                          <CardHeader>
-                            <CardTitle className="text-base">个性化报表</CardTitle>
-                            <CardDescription>创建和导出个性化报表</CardDescription>
-                          </CardHeader>
-                          <CardContent>
-                            <div className="flex flex-col items-center text-center">
-                              <Download className="h-16 w-16 text-muted-foreground mb-4" />
-                              <p className="text-sm text-muted-foreground mb-4">自定义报表内容和格式，按需导出数据</p>
-                              <Button onClick={() => setShowReportExporter(true)}>导出报表</Button>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              </TabsContent>
-
-              <TabsContent value="workflow" className="mt-6 space-y-6">
-                <div className="grid grid-cols-1 gap-6">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>业务流程优化功能</CardTitle>
-                      <CardDescription>引导式操作界面、任务管理和业务流程自动化</CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-6">
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <Card>
-                          <CardHeader>
-                            <CardTitle className="text-base">引导式操作</CardTitle>
-                            <CardDescription>通过步骤引导完成复杂业务流程</CardDescription>
-                          </CardHeader>
-                          <CardContent>
-                            <div className="flex flex-col items-center text-center">
-                              <Workflow className="h-16 w-16 text-muted-foreground mb-4" />
-                              <p className="text-sm text-muted-foreground mb-4">通过分步引导，简化复杂业务流程操作</p>
-                              <Button onClick={() => setShowGuidedWorkflow(true)}>创建订单</Button>
-                            </div>
-                          </CardContent>
-                        </Card>
-
-                        <Card>
-                          <CardHeader>
-                            <CardTitle className="text-base">任务管理</CardTitle>
-                            <CardDescription>管理和跟踪团队任务</CardDescription>
-                          </CardHeader>
-                          <CardContent>
-                            <div className="flex flex-col items-center text-center">
-                              <CheckSquare className="h-16 w-16 text-muted-foreground mb-4" />
-                              <p className="text-sm text-muted-foreground mb-4">
-                                创建、分配和跟踪任务，提高团队协作效率
-                              </p>
-                              <Button onClick={() => setActiveTab("task-manager")}>查看任务</Button>
-                            </div>
-                          </CardContent>
-                        </Card>
-
-                        <Card>
-                          <CardHeader>
-                            <CardTitle className="text-base">流程自动化</CardTitle>
-                            <CardDescription>自动化重复性任务，提高工作效率</CardDescription>
-                          </CardHeader>
-                          <CardContent>
-                            <div className="flex flex-col items-center text-center">
-                              <Zap className="h-16 w-16 text-muted-foreground mb-4" />
-                              <p className="text-sm text-muted-foreground mb-4">创建自动化流程，减少重复性工作</p>
-                              <Button onClick={() => setActiveTab("process-automation")}>管理自动化</Button>
-                            </div>
-                          </CardContent>
-                        </Card>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              </TabsContent>
-
-              <TabsContent value="task-manager" className="mt-6">
-                <TaskManager />
-              </TabsContent>
-
-              <TabsContent value="process-automation" className="mt-6">
-                <ProcessAutomation />
-              </TabsContent>
-            </Tabs>
+                </DialogContent>
+              </Dialog>
+            </div>
           </div>
-        </main>
-      </div>
-    </AppBackgroundLayout>
+
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <TabsList className="grid w-full grid-cols-3">
+              <TabsTrigger value="visualization">
+                <div className="flex items-center">
+                  <BarChart3 className="mr-2 h-4 w-4" />
+                  <span>数据可视化</span>
+                </div>
+              </TabsTrigger>
+              <TabsTrigger value="personalization">
+                <div className="flex items-center">
+                  <Sliders className="mr-2 h-4 w-4" />
+                  <span>个性化设置</span>
+                </div>
+              </TabsTrigger>
+              <TabsTrigger value="workflow">
+                <div className="flex items-center">
+                  <Workflow className="mr-2 h-4 w-4" />
+                  <span>业务流程优化</span>
+                </div>
+              </TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="visualization" className="mt-6 space-y-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <AdvancedLineChart
+                  data={multiLineData}
+                  title="多维度销售趋势"
+                  description="销售额、订单数和客户数趋势对比"
+                  lines={[
+                    { dataKey: "sales", stroke: "#3b82f6", name: "销售额" },
+                    { dataKey: "orders", stroke: "#10b981", name: "订单数" },
+                    { dataKey: "customers", stroke: "#f59e0b", name: "客户数" },
+                  ]}
+                  xAxisDataKey="name"
+                />
+
+                <StackedAreaChart
+                  data={stackedAreaData}
+                  title="商品类别销售趋势"
+                  description="各类别销售额堆叠展示"
+                  areas={[
+                    { dataKey: "饮品", stroke: "#3b82f6", fill: "#3b82f6", name: "饮品" },
+                    { dataKey: "食品", stroke: "#10b981", fill: "#10b981", name: "食品" },
+                    { dataKey: "服务", stroke: "#f59e0b", fill: "#f59e0b", name: "服务" },
+                  ]}
+                />
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <HeatMapChart data={heatMapData} title="订单热力图" description="一周内各时段订单数量分布" />
+
+                <ScatterPlotChart data={scatterData} title="客户消费分析" description="消费金额与频次关系分析" />
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <AdvancedPieChart data={pieData} title="销售额分布" description="各类别销售额占比" />
+
+                <DrillDownChart data={drillDownData} title="销售额多维度分析" description="点击柱形可查看更详细数据" />
+              </div>
+            </TabsContent>
+
+            <TabsContent value="personalization" className="mt-6 space-y-6">
+              <div className="grid grid-cols-1 gap-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>个性化设置功能</CardTitle>
+                    <CardDescription>自定义您的仪表盘、保存筛选条件和导出个性化报表</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      <Card>
+                        <CardHeader>
+                          <CardTitle className="text-base">自定义仪表盘</CardTitle>
+                          <CardDescription>根据您的需求自定义仪表盘布局和内容</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                          <div className="flex flex-col items-center text-center">
+                            <Settings className="h-16 w-16 text-muted-foreground mb-4" />
+                            <p className="text-sm text-muted-foreground mb-4">自定义您的仪表盘布局、小部件和显示选项</p>
+                            <Button onClick={() => setShowDashboardCustomizer(true)}>自定义仪表盘</Button>
+                          </div>
+                        </CardContent>
+                      </Card>
+
+                      <Card>
+                        <CardHeader>
+                          <CardTitle className="text-base">保存筛选条件</CardTitle>
+                          <CardDescription>保存常用筛选条件以便快速应用</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                          <div className="flex flex-col items-center text-center">
+                            <Filter className="h-16 w-16 text-muted-foreground mb-4" />
+                            <p className="text-sm text-muted-foreground mb-4">保存和管理您的筛选条件，提高工作效率</p>
+                            <Button onClick={() => setShowSavedFilters(true)}>管理筛选条件</Button>
+                          </div>
+                        </CardContent>
+                      </Card>
+
+                      <Card>
+                        <CardHeader>
+                          <CardTitle className="text-base">个性化报表</CardTitle>
+                          <CardDescription>创建和导出个性化报表</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                          <div className="flex flex-col items-center text-center">
+                            <Download className="h-16 w-16 text-muted-foreground mb-4" />
+                            <p className="text-sm text-muted-foreground mb-4">自定义报表内容和格式，按需导出数据</p>
+                            <Button onClick={() => setShowReportExporter(true)}>导出报表</Button>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="workflow" className="mt-6 space-y-6">
+              <div className="grid grid-cols-1 gap-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>业务流程优化功能</CardTitle>
+                    <CardDescription>引导式操作界面、任务管理和业务流程自动化</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                      <Card>
+                        <CardHeader>
+                          <CardTitle className="text-base">引导式操作</CardTitle>
+                          <CardDescription>通过步骤引导完成复杂业务流程</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                          <div className="flex flex-col items-center text-center">
+                            <Workflow className="h-16 w-16 text-muted-foreground mb-4" />
+                            <p className="text-sm text-muted-foreground mb-4">通过分步引导，简化复杂业务流程操作</p>
+                            <Button onClick={() => setShowGuidedWorkflow(true)}>创建订单</Button>
+                          </div>
+                        </CardContent>
+                      </Card>
+
+                      <Card>
+                        <CardHeader>
+                          <CardTitle className="text-base">任务管理</CardTitle>
+                          <CardDescription>管理和跟踪团队任务</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                          <div className="flex flex-col items-center text-center">
+                            <CheckSquare className="h-16 w-16 text-muted-foreground mb-4" />
+                            <p className="text-sm text-muted-foreground mb-4">创建、分配和跟踪任务，提高团队协作效率</p>
+                            <Button onClick={() => setActiveTab("task-manager")}>查看任务</Button>
+                          </div>
+                        </CardContent>
+                      </Card>
+
+                      <Card>
+                        <CardHeader>
+                          <CardTitle className="text-base">流程自动化</CardTitle>
+                          <CardDescription>自动化重复性任务，提高工作效率</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                          <div className="flex flex-col items-center text-center">
+                            <Zap className="h-16 w-16 text-muted-foreground mb-4" />
+                            <p className="text-sm text-muted-foreground mb-4">创建自动化流程，减少重复性工作</p>
+                            <Button onClick={() => setActiveTab("process-automation")}>管理自动化</Button>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="task-manager" className="mt-6">
+              <TaskManager />
+            </TabsContent>
+
+            <TabsContent value="process-automation" className="mt-6">
+              <ProcessAutomation />
+            </TabsContent>
+          </Tabs>
+        </div>
+      </main>
+    </div>
   )
 }
